@@ -98,7 +98,7 @@ module Kitchen
 
       def remote_docker_host?
         return true if config[:data_image_enabled]
-        return true if config[:docker_host_url] =~ /^tcp:/
+        # return true if config[:docker_host_url] =~ /^tcp:/
         false
       end
 
