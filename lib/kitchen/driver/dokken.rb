@@ -39,6 +39,7 @@ module Kitchen
       default_config :chef_image, 'chef/chef'
       default_config :chef_version, 'current'
       default_config :data_image, 'dokken/kitchen-cache:latest'
+      default_config :data_image_enabled, false
       default_config :dns, nil
       default_config :dns_search, nil
       default_config :docker_host_url, default_docker_host
@@ -96,6 +97,7 @@ module Kitchen
       private
 
       def remote_docker_host?
+        return true if config[:data_image_enabled]
         return true if config[:docker_host_url] =~ /^tcp:/
         false
       end
