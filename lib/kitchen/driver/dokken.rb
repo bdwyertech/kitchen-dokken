@@ -202,6 +202,7 @@ module Kitchen
       end
 
       def dokken_binds
+        return []
         ret = []
         ret << "#{dokken_kitchen_sandbox}:/opt/kitchen" unless dokken_kitchen_sandbox.nil?
         ret << "#{dokken_verifier_sandbox}:/opt/verifier" unless dokken_verifier_sandbox.nil?
