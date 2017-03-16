@@ -179,12 +179,17 @@ module Kitchen
       def call(state)
         create_sandbox
         sandbox_dirs = Dir.glob(File.join(sandbox_path, "*"))
+        # DEBUG
+        puts "DEBUG: SANDBOX DIRS: #{sandbox_dirs.inspect}"
         
         instance.transport.connection(state) do |conn|          
           conn.execute(install_command)          
           
+          #DEBUG
+          puts "DEBUG: STATE_DATA_CONTAINER: #{state[:data_container].inspect}"
           unless state[:data_container].nil?
             conn.execute(init_command)
+            puts 'WE MADE IT HERE'
             info("Transferring files to #{instance.to_str}")
             conn.upload(sandbox_dirs, config[:root_path])
             debug("Transfer complete")
