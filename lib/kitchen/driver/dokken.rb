@@ -237,6 +237,7 @@ module Kitchen
       def dokken_volumes_from
         ret = []
         ret << chef_container_name
+        ret << ENV['HOSTNAME']
         ret << data_container_name if remote_docker_host?
         ret
       end
